@@ -11,13 +11,5 @@ const isValid = function (value) {
     return true;
 };
 
-// Mongoose ObjectId validation
-const isValidObjectId = function (ObjectId) {
-    return mongoose.Types.ObjectId.isValid(ObjectId)
-}
 
-module.exports = {
-    isValid,
-    isValidObjectId,
-    isValidRequestBody
-}
+module.exports = { isValid, isValidRequestBody }

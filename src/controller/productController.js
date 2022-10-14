@@ -5,15 +5,16 @@ const { isValid,
 
 const createProduct = async function (req, res) {
     try {
-
+        // Taking input from request body
         const data = req.body;
-        // console.log(data)
+
         if (!isValidRequestBody(data)) {
             return res.status(400).send({ status: false, msg: "Request body is empty" })
         }
-
+        // Destructing
         const { productName, brandName, category, subcategory, colour, sizes } = data;
 
+        // Validation
         if (!isValid(productName)) {
             return res.status(400).send({ status: false, msg: "Title field is required" })
         }
@@ -33,10 +34,9 @@ const createProduct = async function (req, res) {
             return res.status(400).send({ status: false, msg: "Sizes field is required" })
         }
 
-        console.log(sizes)
-
         if (sizes) {
-            let array = sizes.split(",").map(x => x.trim()) //this will split the available sizes and give it an array
+            //this will split the available sizes and give it an array
+            let array = sizes.split(",").map(x => x.trim()) 
 
             for (let i = 0; i < array.length; i++) {
                 if (!(["XS", "S", "M", "X", "L", "XL", "XXL", "XXXL"].includes(array[i]))) {
